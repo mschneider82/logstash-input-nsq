@@ -10,9 +10,10 @@ Logstash Configuration
 
     input {
        nsq {
-            nsqlookupd => "127.0.0.1:4161"
+            nsqlookupd => ["127.0.0.1:4161","1.2.3.4:4161"]
             topic => "testtopic"
             channel => "testchannel"
+            max_in_flight  => 200
        }
     }
 

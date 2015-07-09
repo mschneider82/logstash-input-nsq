@@ -7,9 +7,10 @@ class LogStash::Inputs::Nsq < LogStash::Inputs::Base
 
   default :codec, 'json'
 
-  config :nsqlookupd, :validate => :string, :default => 'localhost:4161'
+  config :nsqlookupd, :validate => :array, :default => 'localhost:4161'
   config :channel, :validate => :string, :default => 'logstash'
   config :topic, :validate => :string, :default => 'testtopic'
+  config :max_in_flight, :validate => :number, :default => 100
 
 
   public
@@ -25,7 +26,8 @@ class LogStash::Inputs::Nsq < LogStash::Inputs::Base
         consumer = Nsq::Consumer.new(
            :nsqlookupd => @nsqlookupd,
            :topic => @topic,
-           :channel => @channel
+           :channel => @channel,
+           :max_in_flight => @max_in_flight
         )
         while true
           #@logger.info('consuming...')
