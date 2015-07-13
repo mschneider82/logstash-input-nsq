@@ -52,7 +52,7 @@ class LogStash::Inputs::Nsq < LogStash::Inputs::Base
   def queue_event(body, output_queue)
     begin
         #@logger.info('processing:', :body => body)
-	event = LogStash::Event.new("message" => body, "host" => @host)  
+	event = LogStash::Event.new("message" => body)  
 	decorate(event)
 	output_queue << event
     rescue => e # parse or event creation error
