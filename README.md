@@ -28,6 +28,36 @@ Logstash Configuration
        }
     }
 
+
+Logstash Configuration with TLS
+====================
+
+    input {
+       nsq {
+            nsqlookupd => ["127.0.0.1:4161","1.2.3.4:4161"]
+            topic => "testtopic"
+            channel => "testchannel"
+            max_in_flight  => 200
+	    tls_v1 => true
+       }
+    }
+
+
+Logstash Configuration with TLS Auth
+====================
+
+    input {
+       nsq {
+            nsqlookupd => ["127.0.0.1:4161","1.2.3.4:4161"]
+            topic => "testtopic"
+            channel => "testchannel"
+            max_in_flight  => 200
+	    ssl_key => "/path/to/private.key"
+	    ssl_cert => "/path/to/public.key"
+       }
+    }
+
+
 Dependencies
 ====================
 

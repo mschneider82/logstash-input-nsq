@@ -11,7 +11,9 @@ class LogStash::Inputs::Nsq < LogStash::Inputs::Base
   config :channel, :validate => :string, :default => 'logstash'
   config :topic, :validate => :string, :default => 'testtopic'
   config :max_in_flight, :validate => :number, :default => 100
-
+  config :tls_v1, :validate => :boolean, :default => false
+  config :ssl_key, :validate => :string
+  config :ssl_cert, :validate => :string
 
   public
   def register
@@ -23,12 +25,27 @@ class LogStash::Inputs::Nsq < LogStash::Inputs::Base
     @logger.info('Running nsq', :channel => @channel, :topic => @topic, :nsqlookupd => @nsqlookupd)
     begin
       begin
-        consumer = Nsq::Consumer.new(
+	if @ssl_key and @ssl_cert
+	  consumer = Nsq::Consumer.new(
+	   :nsqlookupd => @nsqlookupd,
+	   :topic => @topic,
+	   :channel => @channel,
+	   :max_in_flight => @max_in_flight,
+	   :tls_v1 => @tls_v1,
+	   :ssl_context => {
+	    key: @ssl_key,
+	    certificate: @ssl_cert
+	   }
+	  )
+ 	else
+          consumer = Nsq::Consumer.new(
            :nsqlookupd => @nsqlookupd,
            :topic => @topic,
            :channel => @channel,
+	   :tls_v1 => @tls_v1,
            :max_in_flight => @max_in_flight
-        )
+          )
+	end
         while true
           #@logger.info('consuming...')
           event = consumer.pop
