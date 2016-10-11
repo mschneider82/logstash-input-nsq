@@ -38,7 +38,7 @@ Logstash Configuration with TLS
             topic => "testtopic"
             channel => "testchannel"
             max_in_flight  => 200
-	    tls_v1 => true
+            tls_v1 => true
        }
     }
 
@@ -52,12 +52,11 @@ Logstash Configuration with TLS Auth
             topic => "testtopic"
             channel => "testchannel"
             max_in_flight  => 200
-	    tls_v1 => true
-	    tls_key => "/path/to/private.key"
-	    tls_cert => "/path/to/public.key"
+            tls_v1 => true
+            tls_key => "/path/to/private.key"
+            tls_cert => "/path/to/public.pem"
        }
     }
-
 
 Dependencies
 ====================
