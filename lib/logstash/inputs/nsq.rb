@@ -25,7 +25,7 @@ class LogStash::Inputs::Nsq < LogStash::Inputs::Base
     @logger.info('Running nsq', :channel => @channel, :topic => @topic, :nsqlookupd => @nsqlookupd)
     begin
       begin
-	if @ssl_key and @ssl_cert
+	if @tls_key and @tls_cert
 	  consumer = Nsq::Consumer.new(
 	   :nsqlookupd => @nsqlookupd,
 	   :topic => @topic,
