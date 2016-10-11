@@ -12,8 +12,8 @@ class LogStash::Inputs::Nsq < LogStash::Inputs::Base
   config :topic, :validate => :string, :default => 'testtopic'
   config :max_in_flight, :validate => :number, :default => 100
   config :tls_v1, :validate => :boolean, :default => false
-  config :ssl_key, :validate => :string
-  config :ssl_cert, :validate => :string
+  config :tls_key, :validate => :string
+  config :tls_cert, :validate => :string
 
   public
   def register
@@ -32,7 +32,7 @@ class LogStash::Inputs::Nsq < LogStash::Inputs::Base
 	   :channel => @channel,
 	   :max_in_flight => @max_in_flight,
 	   :tls_v1 => @tls_v1,
-	   :ssl_context => {
+	   :tls_context => {
 	    key: @ssl_key,
 	    certificate: @ssl_cert
 	   }
