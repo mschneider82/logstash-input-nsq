@@ -33,8 +33,8 @@ class LogStash::Inputs::Nsq < LogStash::Inputs::Base
 	   :max_in_flight => @max_in_flight,
 	   :tls_v1 => @tls_v1,
 	   :tls_context => {
-	    key: @ssl_key,
-	    certificate: @ssl_cert
+	    key: @tls_key,
+	    certificate: @tls_cert
 	   }
 	  )
  	else
