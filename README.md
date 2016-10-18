@@ -68,3 +68,12 @@ Dependencies are auto installed by logstash-plugin
 
 * [nsq-ruby](https://github.com/wistia/nsq-ruby/)
 
+Features
+====================
+
+* Discovery via nsqlookupd
+* Automatic reconnection to nsqd
+* Channels and Topics with `#ephemeral` suffix to prevent writing to disk
+* TLS
+* TLS Auth (not really tested)
+
