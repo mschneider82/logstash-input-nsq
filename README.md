@@ -1,7 +1,7 @@
 logstash-input-nsq Plugin
 ====================
 
-This is a NSQ input plugin for Logstash. This input will consume messages from a nsq topic using [nsq-ruby](https://github.com/wistia/nsq-ruby/). 
+This is a NSQ input plugin for Logstash. This plugin will consume messages from a nsq topic using [nsq-ruby](https://github.com/wistia/nsq-ruby/). 
 
 At my work for [retarus GmbH](https://www.retarus.com) I really missed the NSQ support in logstash thats why i created this project in the after hours.
 There is also a [logstash output nsq plugin](https://github.com/mschneider82/logstash-output-nsq) available.
