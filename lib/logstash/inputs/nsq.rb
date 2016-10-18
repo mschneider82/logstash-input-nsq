@@ -50,7 +50,7 @@ class LogStash::Inputs::Nsq < LogStash::Inputs::Base
           event = @consumer.pop
           #@logger.info('processing:', :event => event)
           queue_event(event.body, logstash_queue)
-	      event.finish
+          event.finish
        end
        @logger.warn('Done running nsq input')
     end
@@ -60,9 +60,9 @@ class LogStash::Inputs::Nsq < LogStash::Inputs::Base
   def queue_event(body, output_queue)
     begin
         #@logger.info('processing:', :body => body)
-	    event = LogStash::Event.new("message" => body)  
-	    decorate(event)
-    	output_queue << event
+        event = LogStash::Event.new("message" => body)
+        decorate(event)
+        output_queue << event
         rescue => e # parse or event creation error
            @logger.error('Failed to create event', :message => "#{body}", :exception => e,
                     :backtrace => e.backtrace)
