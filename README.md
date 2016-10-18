@@ -1,16 +1,10 @@
-# Logstash Plugin
+logstash-input-nsq Plugin
+====================
 
-This is a plugin for [Logstash](https://www.elastic.co/products/logstash).
-
-It is fully free and fully open source. The license is Apache 2.0, meaning you are pretty much free to use it however you want in whatever way.
+This is a NSQ input plugin for Logstash. This input will consume messages from a nsq topic using [nsq-ruby](https://github.com/wistia/nsq-ruby/). 
 
 At my work for [retarus GmbH](https://www.retarus.com) I really missed the NSQ support in logstash thats why i created this project in the after hours.
 There is also a [logstash output nsq plugin](https://github.com/mschneider82/logstash-output-nsq) available.
-
-logstash-input-nsq
-====================
-
-NSQ input for Logstash. This input will consume messages from a nsq topic using [nsq-ruby](https://github.com/wistia/nsq-ruby/). 
 
 For more information about NSQ, refer to this [documentation](http://nsq.io) 
 
