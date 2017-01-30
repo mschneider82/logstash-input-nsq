@@ -14,6 +14,7 @@ class LogStash::Inputs::Nsq < LogStash::Inputs::Base
   config :tls_v1, :validate => :boolean, :default => false
   config :tls_key, :validate => :string
   config :tls_cert, :validate => :string
+  config :multi_events, :validate => :boolean, :default => false
 
   public
   def register
@@ -59,13 +60,21 @@ class LogStash::Inputs::Nsq < LogStash::Inputs::Base
   private
   def queue_event(body, output_queue)
     begin
-        #@logger.info('processing:', :body => body)
-        event = LogStash::Event.new("message" => body)
-        decorate(event)
-        output_queue << event
-        rescue => e # parse or event creation error
-           @logger.error('Failed to create event', :message => "#{body}", :exception => e,
-                    :backtrace => e.backtrace)
+        if @multi_events
+          events = body.split("\n")
+          events.each do |ev|
+            event = LogStash::Event.new("message" => ev)
+            decorate(event)
+            output_queue << event
+          end
+        else
+          event = LogStash::Event.new("message" => body)
+          decorate(event)
+          output_queue << event
+        end
+    rescue => e # parse or event creation error
+       @logger.error('Failed to create event', :message => "#{body}", :exception => e, :multi_events => @multi_events,
+                :backtrace => e.backtrace)
     end # begin
   end # def queue_event
 
