@@ -76,4 +76,4 @@ Features
 * Channels and Topics with `#ephemeral` suffix to prevent writing to disk
 * TLS
 * TLS Auth (not really tested)
-
+* Multi Events: multi_events => true (default: false, this will split input messages by a `\n` into multiple events)
