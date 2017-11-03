@@ -68,9 +68,10 @@ class LogStash::Inputs::Nsq < LogStash::Inputs::Base
             output_queue << event
           end
         else
-          event = LogStash::Event.new("message" => body)
-          decorate(event)
-          output_queue << event
+          @codec.decode(body) do |event|
+            decorate(event)
+            output_queue << event
+          end
         end
     rescue => e # parse or event creation error
        @logger.error('Failed to create event', :message => "#{body}", :exception => e, :multi_events => @multi_events,
