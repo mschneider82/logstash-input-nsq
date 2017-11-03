@@ -28,6 +28,7 @@ Logstash Configuration
             topic => "topicname"
             channel => "channelname"
             max_in_flight  => 200
+            codec => plain
        }
     }
 
@@ -42,6 +43,7 @@ Logstash Configuration with TLS
             channel => "channelname"
             max_in_flight  => 200
             tls_v1 => true
+            codec => json
        }
     }
 
@@ -73,6 +75,7 @@ Features
 
 * Discovery via nsqlookupd
 * Automatic reconnection to nsqd
+* Codec support (default: json)
 * Channels and Topics with `#ephemeral` suffix to prevent writing to disk
 * TLS
 * TLS Auth (not really tested)
