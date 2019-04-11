@@ -19,7 +19,7 @@ Gem::Specification.new do |s|
   s.metadata = { 'logstash_plugin' => 'true', 'group' => 'input'}
 
   # Gem dependencies
-  s.add_runtime_dependency "logstash-core", ">= 2.0.0", "< 7.0.0"
+  s.add_runtime_dependency "logstash-core", ">= 2.0.0"
   s.add_runtime_dependency 'logstash-codec-json'
   s.add_runtime_dependency 'logstash-codec-plain'
 
